@@ -25,7 +25,7 @@ const BreakingNewsComponent = ({ breakingNews }) => {
                   <span className="text-color-white">
                     {item.source && item.source.name}
                   </span>
-                  <h3 className="text-color-white m-0 p-0 ">{item.title}</h3>
+                  <h3 className="text-color-white m-0 p-0">{item.title}</h3>
                 </Col>
                 <Col xs={6} sm={6} md={6} lg={1} xl={1}>
                   <Link
@@ -54,7 +54,9 @@ const BreakingNewsComponent = ({ breakingNews }) => {
                   <Row>
                     <Col>
                       <Typography>
-                        <Title level={4}>{item.description}</Title>
+                        <Title level={4} className="article_description">
+                          {item.description}
+                        </Title>
                         <Paragraph>{item.content}</Paragraph>
                       </Typography>
                     </Col>

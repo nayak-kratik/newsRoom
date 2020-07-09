@@ -1,3 +1,4 @@
+@import "media.scss";
 $color1: #f7f7f7;
 $color2: #efefef;
 $color3: #e4e4e4;
@@ -42,18 +43,7 @@ html {
   margin: auto !important;
   width: 100%;
 }
-.article__title {
-  min-height: 80px;
-  background: #000000a1;
-  padding: 10px 0px;
-  top: 0;
-  text-align: center;
-  overflow: scroll;
-}
-.article__content {
-  background: white;
-  padding: 10px;
-}
+
 .article__content a {
   text-decoration: none;
   color: white;
@@ -63,17 +53,6 @@ html {
   border-radius: 5px;
   background: gray;
 }
-// .ant-carousel .slick-slide {
-//   text-align: center;
-//   height: 160px;
-//   line-height: 160px;
-//   background: #364d79;
-//   overflow: hidden;
-// }
-
-// .ant-carousel .slick-slide h3 {
-//   color: #fff;
-// }
 
 .box-shadow-outset {
   box-shadow: 10px 10px 20px rgba(0, 2, 10, 0.2),
@@ -101,4 +80,37 @@ html {
 .article_img {
   height: 450px;
   max-height: 450px;
+  @include respond-to(small) {
+    height: 250px;
+  }
+}
+
+.article__title {
+  min-height: 80px;
+  background: #000000a1;
+  padding: 10px 0px;
+  top: 0;
+  text-align: center;
+  overflow: scroll;
+  @include respond-to(small) {
+    font-size: small;
+  }
+}
+.article_description {
+  @include respond-to(small) {
+    font-size: medium !important;
+  }
+}
+.article__content {
+  background: white;
+  padding: 10px;
+  @include respond-to(small) {
+    font-size: small !important;
+  }
+}
+.main-layout {
+  padding: 0 2rem;
+  @include respond-to(small) {
+    padding: 0 0.2rem;
+  }
 }
