@@ -108,9 +108,21 @@ html {
     font-size: small !important;
   }
 }
-.main-layout {
+.main-layout .individual-article-site-page-header {
   padding: 0 2rem;
   @include respond-to(small) {
-    padding: 0 0.2rem;
+    padding: 0 0.3rem;
+  }
+}
+.individual-article img {
+  min-height: 250px;
+}
+.individual-article .ant-typography {
+  margin: 1rem !important;
+  font-size: large;
+  @include respond-to(small) {
+    margin: 0.3rem !important;
+    font-size: small;
+    text-align: justify;
   }
 }
