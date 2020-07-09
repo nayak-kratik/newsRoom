@@ -57,7 +57,7 @@ class Main extends Component {
           style={{ backgroundColor: this.state.bgColor }}
         >
           <SideNav loadNewsFunction={this.loadNews}></SideNav>
-          <Layout className="bg-transparent p-5">
+          <Layout className="bg-transparent px-5">
             <Content>
               <Route
                 exact
@@ -70,7 +70,7 @@ class Main extends Component {
                   />
                 )}
               />
-              <Route path="/:article" component={Article} />
+              <Route path="/article" component={Article} />
             </Content>
           </Layout>
         </Layout>

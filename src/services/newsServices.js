@@ -9,7 +9,7 @@ export function requestNewsService(source) {
       sources: source,
       sortBy: "publishedAt",
       apiKey: "13f7003e27004379881e669afe8e2814",
-      pageSize: 40,
+      pageSize: 50,
     });
     fetch(proxyurl + baseUrl + "?" + formattedParams, {
       method: "GET",
