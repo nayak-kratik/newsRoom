@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Row, Col } from "antd";
 import { Layout } from "antd";
 
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { COLOR1, COLOR2, COLOR3, COLOR4, COLOR5 } from "../utils/colorPalette";
 
 import "../styles/styles.scss";
@@ -16,23 +15,24 @@ class SideNav extends Component {
     };
   }
 
-  onCollapse = () => {
+  shouldCollapse = (flag) => {
     this.setState({
-      collapsed: !this.state.collapsed,
+      collapsed: flag,
     });
   };
   render() {
     const { loadNewsFunction } = this.props;
     return (
       <>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          {React.createElement(
-            this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-            {
-              className: "trigger css-trigger-icon",
-              onClick: this.onCollapse,
-            }
-          )}
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+          breakpoint="md"
+          onBreakpoint={(broken) => {
+            broken ? this.shouldCollapse(true) : this.shouldCollapse(false);
+          }}
+        >
           <Row justify="space-around" className="h-100">
             <Col
               className="css-source  color-one"

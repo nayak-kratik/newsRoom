@@ -1,8 +1,3 @@
-// $color1: #fec89a;
-// $color2: #f9dcc4;
-// $color3: #f8edeb;
-// $color4: #fcd5ce;
-// $color5: #ffbfb3;
 $color1: #f7f7f7;
 $color2: #efefef;
 $color3: #e4e4e4;
@@ -42,18 +37,13 @@ html {
   align-items: center;
   cursor: pointer;
 }
-.article__carousel-card {
-  height: 550px;
-}
-.article__card {
-  // height: 400px;
-}
+
 .ant-carousel {
   margin: auto !important;
   width: 100%;
 }
 .article__title {
-  height: 80px;
+  min-height: 80px;
   background: #000000a1;
   padding: 10px 0px;
   top: 0;
@@ -107,4 +97,8 @@ html {
 
 .text-color-white {
   color: white;
+}
+.article_img {
+  height: 450px;
+  max-height: 450px;
 }
