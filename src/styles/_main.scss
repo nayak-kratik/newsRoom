@@ -108,12 +108,14 @@ html {
     font-size: small !important;
   }
 }
-.main-layout .individual-article-site-page-header {
-  padding: 0 2rem;
+.main-layout,
+.individual-article-site-page-header {
+  padding: 0 2rem !important;
   @include respond-to(small) {
-    padding: 0 0.3rem;
+    padding: 0 0.3rem !important;
   }
 }
+
 .individual-article img {
   min-height: 250px;
 }

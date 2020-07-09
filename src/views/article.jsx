@@ -10,7 +10,7 @@ const Article = (props) => {
       <img
         src={props.location.state.urlToImage}
         alt="img"
-        className="w-100"
+        className="w-100 article_img"
       ></img>
       <Row>
         <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-left">
@@ -32,7 +32,7 @@ const Article = (props) => {
     <>
       <PageHeader
         title={props.location.state.title}
-        className="individual-article-site-page-header"
+        className="individual-article-site-page-header my-3"
         extra={[
           <Button
             key="3"
