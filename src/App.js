@@ -16,39 +16,57 @@ const { Content } = Layout;
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { bgColor: COLOR1, articles: [], breakingNews: [] };
+    this.state = {
+      bgColor: COLOR1,
+      articles: [],
+      breakingNews: [],
+      pageNumber: 1,
+      source: "bbc-news",
+    };
   }
   componentDidMount() {
-    this.props.getNews("bbc-news");
-    this.props.getBreakingNews("bbc-news");
+    this.props.getNews(this.state.source);
+    this.props.getBreakingNews(this.state.source);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       (prevProps.articles !== this.props.articles &&
         this.props.articles.get("status") !== "fetching") ||
       (prevProps.breakingNews !== this.props.breakingNews &&
         this.props.breakingNews.get("status") !== "fetching")
     ) {
-      this.setState({
-        articles: this.props.articles.get("articles"),
+      this.setState((prevState) => ({
+        articles: this.state.articles.concat(
+          this.props.articles.get("articles")
+        ),
         breakingNews: this.props.breakingNews.get("breakingNews"),
-      });
+      }));
     }
   }
   changeBgColor = (color) => {
     this.setState({ bgColor: color });
   };
-  loadNews = (pageBg, source) => {
+  loadArticlesFromSource = (pageBg, source) => {
     this.changeBgColor(pageBg);
     this.setState({
       articles: [],
       breakingNews: [],
+      source,
+      pageNumber: 1,
     });
     this.props.getNews(source);
     this.props.getBreakingNews(source);
   };
-
+  loadMore = () => {
+    this.props.getNews(this.state.source, this.state.pageNumber + 1);
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        pageNumber: prevState.pageNumber + 1,
+      };
+    });
+  };
   render() {
     return (
       <>
@@ -56,7 +74,9 @@ class Main extends Component {
           className="h-100"
           style={{ backgroundColor: this.state.bgColor }}
         >
-          <SideNav loadNewsFunction={this.loadNews}></SideNav>
+          <SideNav
+            loadArticlesFromSource={this.loadArticlesFromSource}
+          ></SideNav>
           <Layout className="bg-transparent main-layout">
             <Content>
               <Route
@@ -67,6 +87,7 @@ class Main extends Component {
                     {...props}
                     articles={this.state.articles}
                     breakingNews={this.state.breakingNews}
+                    loadMore={this.loadMore}
                   />
                 )}
               />
@@ -87,8 +108,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getNews: (newsSource) => {
-      dispatch(fetchNews(newsSource));
+    getNews: (newsSource, pageNumber = 1) => {
+      dispatch(fetchNews(newsSource, pageNumber));
     },
     getBreakingNews: (newsSource) => {
       dispatch(fetchBreakingNews(newsSource));

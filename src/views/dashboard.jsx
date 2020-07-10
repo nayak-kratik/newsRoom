@@ -19,6 +19,11 @@ class Dashboard extends Component {
             articles={this.props.articles}
           ></OtherNewsComponent>
         </div>
+        <div className="d-flex justify-content-center">
+          <button className="my-2 w-50" onClick={() => this.props.loadMore()}>
+            Load More Articles
+          </button>
+        </div>
       </>
     ) : (
       <div className="d-flex h-100 justify-content-center align-items-center ">

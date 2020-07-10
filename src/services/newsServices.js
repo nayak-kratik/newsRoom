@@ -2,14 +2,15 @@ import { formatUrl } from "../helpers/urlFormatter";
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-export function requestNewsService(source) {
+export function requestNewsService(source, pageNumber) {
   return new Promise((resolve, reject) => {
     const baseUrl = "http://newsapi.org/v2/everything";
     const formattedParams = formatUrl({
       sources: source,
       sortBy: "publishedAt",
       apiKey: "13f7003e27004379881e669afe8e2814",
-      pageSize: 50,
+      pageSize: 5,
+      page: pageNumber,
     });
     fetch(proxyurl + baseUrl + "?" + formattedParams, {
       method: "GET",

@@ -16,7 +16,7 @@ const BreakingNewsComponent = ({ breakingNews }) => {
           <div key={key} className="article__carousel-card">
             <img
               src={item.urlToImage}
-              alt="article_img"
+              alt="img"
               className="m-auto w-100 article_img"
             ></img>
             <div className="m-auto w-100 position-absolute article__title">

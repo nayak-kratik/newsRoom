@@ -3,8 +3,6 @@ import { PageHeader, Button, Row, Col, Typography } from "antd";
 const { Paragraph } = Typography;
 
 const Article = (props) => {
-  console.log(props.location.state);
-
   const content = (
     <div className="text-center individual-article">
       <img
