@@ -21,7 +21,7 @@ const OtherNewsComponent = ({ articles }) => {
                   cover={<img alt="img" src={item.urlToImage} height="225" />}
                   actions={[
                     <LikeOutlined key="like" />,
-
+                    // Redirect the user to /article page and pass values
                     <Link
                       to={{
                         pathname: "/article",

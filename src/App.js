@@ -28,18 +28,25 @@ class Main extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    // Trigger action to Make API Calls
     this.props.getNews(this.state.source);
     this.props.getBreakingNews(this.state.source);
   }
 
   componentDidUpdate(prevProps) {
+    // This sets the prop value (News and headlines) to state
+
     if (
       prevProps.articles !== this.props.articles &&
       this.props.articles.get("status") !== "fetching"
     ) {
+      // Scroll to top only if load more is not clicked
       !this.state.isLoadMore &&
         document.getElementsByClassName("main-layout")[0].scrollTo(0, 0);
 
+      // Update state with the latest news which is sent via props
+      // If the action is load more, then append the articles to existing articles.
+      // Else, show new articles from different source
       this.setState(() => ({
         articles: this.state.isLoadMore
           ? this.state.articles.concat(this.props.articles.get("articles"))
@@ -59,10 +66,12 @@ class Main extends Component {
   }
 
   changeBgColor = (color) => {
+    // Used to change bg color of the page
     this.setState({ bgColor: color });
   };
 
   loadArticlesFromSource = (pageBg, source) => {
+    // This function is called on navigating to another source
     this.changeBgColor(pageBg);
     this.setState(() => ({
       source,
@@ -71,7 +80,9 @@ class Main extends Component {
     this.props.getNews(source);
     this.props.getBreakingNews(source);
   };
+
   loadMore = () => {
+    // This function is called on clickng 'load more'
     this.props.getNews(this.state.source, this.state.pageNumber + 1);
     this.setState((prevState) => {
       return {

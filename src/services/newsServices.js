@@ -1,5 +1,6 @@
 import { formatUrl } from "../helpers/urlFormatter";
 
+// This proxy  server is used to avoid CORS error
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 export function requestNewsService(source, pageNumber) {
