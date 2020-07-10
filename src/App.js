@@ -26,6 +26,7 @@ class Main extends Component {
     };
   }
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.getNews(this.state.source);
     this.props.getBreakingNews(this.state.source);
   }
@@ -35,6 +36,9 @@ class Main extends Component {
       prevProps.articles !== this.props.articles &&
       this.props.articles.get("status") !== "fetching"
     ) {
+      !this.state.isLoadMore &&
+        document.getElementsByClassName("main-layout")[0].scrollTo(0, 0);
+
       this.setState(() => ({
         articles: this.state.isLoadMore
           ? this.state.articles.concat(this.props.articles.get("articles"))
@@ -51,9 +55,11 @@ class Main extends Component {
       }));
     }
   }
+
   changeBgColor = (color) => {
     this.setState({ bgColor: color });
   };
+
   loadArticlesFromSource = (pageBg, source) => {
     this.changeBgColor(pageBg);
     this.setState(() => ({
