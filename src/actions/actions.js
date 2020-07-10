@@ -11,6 +11,7 @@ import {
 
 export function fetchNews(provider, pageNumber) {
   return (dispatch) => {
+    // requestNews action creator is used to change status to loading/fetching
     dispatch(requestNews());
     requestNewsService(provider, pageNumber)
       .then((response) => {

@@ -16,6 +16,7 @@ class SideNav extends Component {
   }
 
   shouldCollapse = (flag) => {
+    //  Collapse and expand side nav
     this.setState({
       collapsed: flag,
     });
