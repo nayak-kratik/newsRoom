@@ -25,6 +25,7 @@ class Main extends Component {
       isLoadMore: false,
     };
   }
+
   componentDidMount() {
     window.scrollTo(0, 0);
     this.props.getNews(this.state.source);
@@ -46,6 +47,7 @@ class Main extends Component {
         isLoadMore: false,
       }));
     }
+
     if (
       prevProps.breakingNews !== this.props.breakingNews &&
       this.props.breakingNews.get("status") !== "fetching"
