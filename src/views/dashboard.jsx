@@ -6,7 +6,9 @@ import OtherNewsComponent from "./dashboradComponents/otherNews";
 
 class Dashboard extends Component {
   render() {
-    return this.props.breakingNews.length > 0 &&
+    return this.props.breakingNews &&
+      this.props.breakingNews.length > 0 &&
+      this.props.articles &&
       this.props.articles.length > 0 ? (
       <>
         <div>
