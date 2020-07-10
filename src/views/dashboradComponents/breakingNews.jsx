@@ -11,7 +11,7 @@ const BreakingNewsComponent = ({ breakingNews }) => {
       <Divider orientation="left">
         <PageHeader className="site-page-header" title="BREAKING NEWS" />
       </Divider>
-      <Carousel autoplay dotPosition="bottom" effect="fade">
+      <Carousel autoplay="true" effect="fade">
         {breakingNews.map((item, key) => (
           <div key={key} className="article__carousel-card">
             <img

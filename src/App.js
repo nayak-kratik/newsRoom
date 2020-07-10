@@ -22,6 +22,7 @@ class Main extends Component {
       breakingNews: [],
       pageNumber: 1,
       source: "bbc-news",
+      isLoadMore: false,
     };
   }
   componentDidMount() {
@@ -29,17 +30,23 @@ class Main extends Component {
     this.props.getBreakingNews(this.state.source);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (
-      (prevProps.articles !== this.props.articles &&
-        this.props.articles.get("status") !== "fetching") ||
-      (prevProps.breakingNews !== this.props.breakingNews &&
-        this.props.breakingNews.get("status") !== "fetching")
+      prevProps.articles !== this.props.articles &&
+      this.props.articles.get("status") !== "fetching"
     ) {
-      this.setState((prevState) => ({
-        articles: this.state.articles.concat(
-          this.props.articles.get("articles")
-        ),
+      this.setState(() => ({
+        articles: this.state.isLoadMore
+          ? this.state.articles.concat(this.props.articles.get("articles"))
+          : this.props.articles.get("articles"),
+        isLoadMore: false,
+      }));
+    }
+    if (
+      prevProps.breakingNews !== this.props.breakingNews &&
+      this.props.breakingNews.get("status") !== "fetching"
+    ) {
+      this.setState(() => ({
         breakingNews: this.props.breakingNews.get("breakingNews"),
       }));
     }
@@ -49,12 +56,10 @@ class Main extends Component {
   };
   loadArticlesFromSource = (pageBg, source) => {
     this.changeBgColor(pageBg);
-    this.setState({
-      articles: [],
-      breakingNews: [],
+    this.setState(() => ({
       source,
       pageNumber: 1,
-    });
+    }));
     this.props.getNews(source);
     this.props.getBreakingNews(source);
   };
@@ -64,6 +69,7 @@ class Main extends Component {
       return {
         ...prevState,
         pageNumber: prevState.pageNumber + 1,
+        isLoadMore: true,
       };
     });
   };
@@ -72,7 +78,15 @@ class Main extends Component {
       <>
         <Layout
           className="h-100"
-          style={{ backgroundColor: this.state.bgColor }}
+          style={{
+            backgroundColor: this.state.bgColor,
+            cursor:
+              this.props.articles.get("status") === "fetching"
+                ? "wait"
+                : "unset",
+            // pointerEvents:
+            //   this.props.articles.get("status") === "fetching" ? "none" : "all",
+          }}
         >
           <SideNav
             loadArticlesFromSource={this.loadArticlesFromSource}

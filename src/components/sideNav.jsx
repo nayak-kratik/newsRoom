@@ -59,9 +59,9 @@ class SideNav extends Component {
             <Col
               className="css-source color-four"
               span={24}
-              onClick={(e) => loadArticlesFromSource(COLOR4, "google-news-in")}
+              onClick={(e) => loadArticlesFromSource(COLOR4, "abc-news")}
             >
-              Google
+              ABC News
             </Col>
             <Col
               className="css-source color-five"

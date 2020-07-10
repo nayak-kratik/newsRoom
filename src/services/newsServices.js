@@ -9,7 +9,7 @@ export function requestNewsService(source, pageNumber) {
       sources: source,
       sortBy: "publishedAt",
       apiKey: "13f7003e27004379881e669afe8e2814",
-      pageSize: 5,
+      pageSize: 10,
       page: pageNumber,
     });
     fetch(proxyurl + baseUrl + "?" + formattedParams, {
@@ -42,7 +42,6 @@ export function requestBreakingNewsService(source) {
       sources: source,
       sortBy: "publishedAt",
       apiKey: "13f7003e27004379881e669afe8e2814",
-      // page: 1,
     });
     fetch(proxyurl + baseUrl + "?" + formattedParams, {
       method: "GET",
