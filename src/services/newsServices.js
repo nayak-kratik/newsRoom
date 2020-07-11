@@ -13,7 +13,7 @@ export function requestNewsService(source, pageNumber) {
       pageSize: 10,
       page: pageNumber,
     });
-    fetch(proxyurl + baseUrl + "?" + formattedParams, {
+    fetch(baseUrl + "?" + formattedParams, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export function requestBreakingNewsService(source) {
       sortBy: "publishedAt",
       apiKey: "13f7003e27004379881e669afe8e2814",
     });
-    fetch(proxyurl + baseUrl + "?" + formattedParams, {
+    fetch(baseUrl + "?" + formattedParams, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
